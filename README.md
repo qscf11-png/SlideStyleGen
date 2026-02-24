@@ -2,33 +2,16 @@
 
 從現有風格中選擇，或使用 AI 擴充新風格，並生成詳細的設計規範與 AI 繪圖提示詞。
 
-## 🌐 線上使用
+**手機/電腦 通用穩定版（GitHub Pages）：**
+👉 [https://qscf11-png.github.io/SlideStyleGen/](https://qscf11-png.github.io/SlideStyleGen/)
 
-**免安裝，直接打開瀏覽器即可使用：**
+- 🚀 **點開即用**，秒級啟動。
+- 📱 **完美支援手機** 與各式瀏覽器。
+- 🔒 **全本地運算**，隱私安全無虞。
 
+**Streamlit 雲端版 (Alternative)：**
 👉 [https://slidestylegen-5fsnbusbdtwj8pbyiqnq9k.streamlit.app/](https://slidestylegen-5fsnbusbdtwj8pbyiqnq9k.streamlit.app/)
-
-## 🖥️ 本機執行
-
-若想在本機執行，請依照以下步驟：
-
-### 環境準備
-
-請確保您的系統已安裝 Python 3.8 或以上版本。
-
-### 安裝相依套件
-
-```bash
-pip install -r requirements.txt
-```
-
-### 啟動應用程式
-
-```bash
-streamlit run app.py
-```
-
-## 📖 使用說明
+*(注意：此版本在某些行動網路環境下可能載入較慢)*
 
 1. **風格選擇**：在左側欄位選擇既有風格，或使用 AI 模擬生成新風格。
 2. **編輯細節**：在中間區域調整風格的詳細設定（配色、字體等）。
