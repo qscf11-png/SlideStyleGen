@@ -1,40 +1,34 @@
-# 如何執行投影片風格生成工具
+# 投影片風格生成工具 (Slide Style Generator)
 
-本工具使用 Python 與 Streamlit 開發。請依照以下步驟執行：
+從現有風格中選擇，或使用 AI 擴充新風格，並生成詳細的設計規範與 AI 繪圖提示詞。
 
-## 1. 環境準備
+## 🌐 線上使用
+
+**免安裝，直接打開瀏覽器即可使用：**
+
+👉 [https://slidestylegen-5fsnbusbdtwj8pbyiqnq9k.streamlit.app/](https://slidestylegen-5fsnbusbdtwj8pbyiqnq9k.streamlit.app/)
+
+## 🖥️ 本機執行
+
+若想在本機執行，請依照以下步驟：
+
+### 環境準備
 
 請確保您的系統已安裝 Python 3.8 或以上版本。
 
-## 2. 安裝相依套件
-
-在專案目錄下執行以下指令：
+### 安裝相依套件
 
 ```bash
 pip install -r requirements.txt
 ```
 
-若使用 `uv`：
-
-```bash
-uv pip install -r requirements.txt
-```
-
-## 3. 執行工具
-
-執行以下指令啟動應用程式：
+### 啟動應用程式
 
 ```bash
 streamlit run app.py
 ```
 
-若使用 `uv`：
-
-```bash
-uv run streamlit run app.py
-```
-
-## 4. 使用說明
+## 📖 使用說明
 
 1. **風格選擇**：在左側欄位選擇既有風格，或使用 AI 模擬生成新風格。
 2. **編輯細節**：在中間區域調整風格的詳細設定（配色、字體等）。
@@ -43,5 +37,5 @@ uv run streamlit run app.py
 
 ## 注意事項
 
-- 本工具為 **Standalone 本地版本**，所有功能（Prompt 生成、規範文件匯出）皆在本機執行，不需連接外網 API，隱私安全性高。
+- 本工具不需連接外網 API，所有功能皆在本機/伺服器端執行。
 - 生成的提示詞可複製至 Midjourney、DALL-E 等 AI 繪圖工具使用。
