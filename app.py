@@ -1,16 +1,20 @@
 import streamlit as st
 import os
-from style_manager import StyleManager
-from prompt_builder import PromptBuilder
 
 # st.set_page_config MUST be the first Streamlit command
 st.set_page_config(page_title="Slide Style Generator", layout="wide")
 
-# Initialize managers with error handling for better diagnostics
+# 增加行動端診斷文字
+st.write("🔄 正在初始化系統...")
+
+from style_manager import StyleManager
+from prompt_builder import PromptBuilder
+
+# Initialize managers 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 style_source_path = os.path.join(base_dir, "styles_source.txt")
 
-@st.cache_resource
+# 暫時移除 @st.cache_resource 以排除行動端快取卡死的可能性
 def get_managers():
     try:
         sm = StyleManager(style_source_path)

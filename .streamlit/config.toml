@@ -1,6 +1,8 @@
 [server]
-enableCORS = false
-enableXsrfProtection = false
+# 恢復為預設 true，讓 Streamlit Cloud 代理正確處理 
+enableCORS = true
+enableXsrfProtection = true
+headless = true
 
 [theme]
 primaryColor = "#ccff00"
