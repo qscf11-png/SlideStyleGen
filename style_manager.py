@@ -16,7 +16,8 @@ class StyleManager:
             with open(self.source_file, 'r', encoding='utf-8') as f:
                 lines = f.readlines()
         except FileNotFoundError:
-            return {}
+            # Re-raise to let the app layer handle and display path info
+            raise FileNotFoundError(f"Styles source file not found: {self.source_file}")
 
         for line in lines:
             line = line.strip()
@@ -95,8 +96,11 @@ class StyleManager:
         return prompt
 
 if __name__ == "__main__":
-    # Test
-    sm = StyleManager("c:\\Users\\tk_tsai\\.gemini\\antigravity\\scratch\\SlideStyleGen\\styles_source.txt")
-    print(f"Loaded {len(sm.styles)} styles.")
-    for name in sm.get_style_names():
-        print(f"- {name}")
+    # Test (Minimal)
+    import os
+    test_path = os.path.join(os.path.dirname(__file__), "styles_source.txt")
+    if os.path.exists(test_path):
+        sm = StyleManager(test_path)
+        print(f"Loaded {len(sm.styles)} styles.")
+    else:
+        print(f"Test file not found at {test_path}")

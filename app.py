@@ -3,15 +3,31 @@ import os
 from style_manager import StyleManager
 from prompt_builder import PromptBuilder
 
-# Initialize managers
-base_dir = os.path.dirname(os.path.abspath(__file__))
-style_manager = StyleManager(os.path.join(base_dir, "styles_source.txt"))
-prompt_builder = PromptBuilder()
-
+# st.set_page_config MUST be the first Streamlit command
 st.set_page_config(page_title="Slide Style Generator", layout="wide")
+
+# Initialize managers with error handling for better diagnostics
+base_dir = os.path.dirname(os.path.abspath(__file__))
+style_source_path = os.path.join(base_dir, "styles_source.txt")
+
+@st.cache_resource
+def get_managers():
+    try:
+        sm = StyleManager(style_source_path)
+        pb = PromptBuilder()
+        return sm, pb, None
+    except Exception as e:
+        return None, None, str(e)
+
+style_manager, prompt_builder, init_error = get_managers()
 
 st.title("投影片風格生成與規範工具 (Slide Style Generator)")
 st.markdown("從現有風格中選擇，或使用 AI 擴充新風格，並生成詳細的設計規範與預覽。")
+
+if init_error:
+    st.error(f"初始化錯誤：{init_error}")
+    st.info(f"嘗試讀取的路徑：{style_source_path}")
+    st.stop()
 
 # Sidebar - Style Selection
 st.sidebar.header("風格選擇")
@@ -21,9 +37,12 @@ selected_style_data = {}
 
 if mode == "選擇現有風格":
     style_names = style_manager.get_style_names()
-    selected_name = st.sidebar.selectbox("選擇風格", style_names)
-    if selected_name:
-        selected_style_data = style_manager.get_style(selected_name)
+    if not style_names:
+        st.sidebar.warning("找不到任何風格資料。")
+    else:
+        selected_name = st.sidebar.selectbox("選擇風格", style_names)
+        if selected_name:
+            selected_style_data = style_manager.get_style(selected_name)
 
 elif mode == "AI 風格擴充 (模擬)":
     st.sidebar.info("模擬 AI 生成新風格的功能。")
